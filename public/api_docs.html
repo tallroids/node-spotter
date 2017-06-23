@@ -1,33 +1,80 @@
 <!doctype html>
 
 <html>
-	<head>
-		<title>Spotter REST API Documentation</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="initial-scale=1.0">
-      <link type="text/css" rel="stylesheet" href="stylesheets/style.css">
-	</head>
 
-	<body>
-      <h1>Spotter REST API Documentation</h1>
-      <h2>Locations</h2>
-      <span class="header get">/api/getLocations</span>
-      <p>Returns all public locations</p>
-      <span class="header get">/api/getLocationById/:id</span>
-      <p>Returns a location object for specified id</p>
-      <span class="header get">/api/getLocationsByCategoryId/:id</span>
-      <p>Returns all public locations that are categorized by specified id</p>
-      <span class="header post">/api/createLocation</span>
-      <p>Creates a location with the following parameters:</p>
-      <ul>
-        <li>title (TEXT)</li>
-        <li>description (TEXT)</li>
-        <li>lat (NUM)</li>
-        <li>lon (NUM)</li>
-        <li>isPublic (BOOL)</li>
-      </ul>
-      <h2>Categories</h2>
-      <h2>Favorites</h2>
-      <h2>Locations-Categories</h2>
-	</body>
+<head>
+  <title>Spotter REST API Documentation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body id="docs">
+  <header>
+    <h1>Spotter REST API Documentation</h1>
+  </header>
+  <main>
+    <h3 class="">How to use this page</h3>
+    <p>The following calls are available for public consumption. Requests should be routed through the application according to the following protocol: <strong>http://heroku-site.com/api/yourApiCallHere.</strong></p>
+    <h2>Locations</h2>
+    <h3 class="get">/api/getLocations</h3>
+    <p>Returns all public locations</p>
+    <h3 class="get">/api/getLocationById/:id</h3>
+    <p>Returns a location object for specified id</p>
+    <h3 class="get">/api/getLocationsByCategoryId/:id</h3>
+    <p>Returns all public locations that are categorized by specified id</p>
+    <h3 class="post">/api/createLocation</h3>
+    <p>Creates a location with the following parameters in the body of the request:</p>
+    <ul>
+      <li>title (STRING)</li>
+      <li>description (STRING)</li>
+      <li>lat (NUM)</li>
+      <li>lon (NUM)</li>
+      <li>isPublic (BOOL)</li>
+    </ul>
+    <h3 class="put">/api/updateLocation</h3>
+    <p>Updates a location with the following parameters in the body of the request:</p>
+    <ul>
+      <li>id (INT)</li>
+      <li>title (STRING)</li>
+      <li>description (STRING)</li>
+      <li>isPublic (BOOL)</li>
+    </ul>
+    <h3 class="delete">/api/deleteLocation/:id</h3>
+    <p>Deletes a location with the specified id</p>
+
+    <h2>Categories</h2>
+    <h3 class="get">/api/getCategories</h3>
+    <p>Returns an array of category objects</p>
+    <h3 class="post">/api/createCategory</h3>
+    <p>Creates a category with the title in the body of the request</p>
+    <h3 class="delete">/api/removeCategory/:id</h3>
+    <p>Removes the category with the specified id</p>
+
+    <h2>Favorites</h2>
+    <h3 class="get">/api/getFavoritesForUser/:id</h3>
+    <p>Returns an array of location objects that a user has saved by the specified userId. Use 'self' to retrieve a list for the current user.</p>
+    <h3 class="post">/api/addFavorite</h3>
+    <p>Associates a location as a favorite for a specified user by passing the following parameters in the body of the request:</p>
+    <ul>
+      <li>userId (INT)</li>
+      <li>locationId (INT)</li>
+    </ul>
+    <h3 class="delete">/api/removeFavorite/:id</h3>
+    <p>Removes the favorite with the specified id</p>
+
+    <h2>Locations-Categories</h2>
+    <h3 class="post">/api/addLocationCategory</h3>
+    <p>Associates a location with a category by passing the following parameters in the body of the request:</p>
+    <ul>
+      <li>locationId (INT)</li>
+      <li>categoryId (INT)</li>
+    </ul>
+
+  </main>
+  <footer>
+    <p>All content &copy; 2017 Benjamin Harker | Harker Media</p>
+  </footer>
+</body>
+
 </html>

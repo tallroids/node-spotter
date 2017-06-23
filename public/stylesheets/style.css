@@ -1,35 +1,90 @@
-*{
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');
+html {
+  margin: 0;
+  padding: 0;
+  font: 14px "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+* {
   color: #123;
 }
 
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #123;
+}
+
+header h1 {
+  margin: 0;
+  padding: 50px 50px 30px;
+  max-width: 800px;
+  margin: auto;
+}
+
+main {
+  padding: 20px 50px;
+  max-width: 800px;
+  margin: auto;
 }
 
 a {
   color: #00B7FF;
 }
 
-.header{
+h3 {
   font-weight: bold;
   font-size: 1.2em;
   display: inline;
 }
 
-p, ul{
+p,
+ul {
   margin-left: 20px;
+  margin-bottom: 20px;
+  margin-top: 10px;
   color: #012;
 }
 
-.header.get:before{
+h3.get:before {
   content: "GET : ";
 }
 
-.header.post:before{
+h3.post:before {
   content: "POST : ";
 }
 
-.header.put:before{
+h3.put:before {
   content: "PUT : ";
+}
+
+h3.delete:before {
+  content: "DELETE : ";
+}
+
+#docs h1 {
+  font-size: 2.3em;
+  font-weight: 700;
+  background: #123;
+  color: #fff;
+}
+
+#docs h2 {
+  font-size: 1.7em;
+  color: #fff;
+  background: #123;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-left: -20px;
+}
+
+footer p {
+  text-align: center;
+  background: #123;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
 }
