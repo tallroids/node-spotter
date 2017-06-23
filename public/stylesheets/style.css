@@ -1,0 +1,35 @@
+*{
+  color: #123;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.header{
+  font-weight: bold;
+  font-size: 1.2em;
+  display: inline;
+}
+
+p, ul{
+  margin-left: 20px;
+  color: #012;
+}
+
+.header.get:before{
+  content: "GET : ";
+}
+
+.header.post:before{
+  content: "POST : ";
+}
+
+.header.put:before{
+  content: "PUT : ";
+}

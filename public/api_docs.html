@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Spotter REST API Documentation</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0">
+      <link type="text/css" rel="stylesheet" href="stylesheets/style.css">
+	</head>
+
+	<body>
+      <h1>Spotter REST API Documentation</h1>
+      <h2>Locations</h2>
+      <span class="header get">/api/getLocations</span>
+      <p>Returns all public locations</p>
+      <span class="header get">/api/getLocationById/:id</span>
+      <p>Returns a location object for specified id</p>
+      <span class="header get">/api/getLocationsByCategoryId/:id</span>
+      <p>Returns all public locations that are categorized by specified id</p>
+      <span class="header post">/api/createLocation</span>
+      <p>Creates a location with the following parameters:</p>
+      <ul>
+        <li>title (TEXT)</li>
+        <li>description (TEXT)</li>
+        <li>lat (NUM)</li>
+        <li>lon (NUM)</li>
+        <li>isPublic (BOOL)</li>
+      </ul>
+      <h2>Categories</h2>
+      <h2>Favorites</h2>
+      <h2>Locations-Categories</h2>
+	</body>
+</html>
