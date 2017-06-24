@@ -1,6 +1,4 @@
-const {
-  Pool
-} = require('pg');
+var Pool = require('pg-pool');
 var config = {
   user: 'spotter_client', //env var: PGUSER
   database: 'spotter', //env var: PGDATABASE
