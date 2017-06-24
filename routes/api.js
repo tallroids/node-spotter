@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var model = require('../model/public');
 
-
 router.get('/', function (req, res, next) {
   res.redirect('../api_docs.html');
 });

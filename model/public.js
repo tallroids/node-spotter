@@ -1,14 +1,19 @@
-var Pool = require('pg-pool');
-var config = {
-  user: 'spotter_client', //env var: PGUSER
-  database: 'spotter', //env var: PGDATABASE
-  password: 'spotter_client', //env var: PGPASSWORD
-  host: 'localhost', // Server hosting the postgres database
-  port: 5432, //env var: PGPORT
-  max: 10, // max number of clients in the pool
-  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+const Pool = require('pg-pool');
+const url = require('url');
+const params = url.parse(process.env.DATABASE_URL || 'postgres://spotter_client:spotter_client@localhost:5432/spotter');
+const auth = params.auth.split(':');
+const config = {
+  user: auth[0],
+  password: auth[1],
+  host: params.hostname,
+  port: params.port,
+  database: params.pathname.split('/')[1],
+  ssl: true
 }
-var pool = new Pool(config);
+if(params.hostname == 'localhost'){
+  config.ssl = false;
+}
+const pool = new Pool(config);
 
 function getLocations(callback) {
   pool.connect(function () {
