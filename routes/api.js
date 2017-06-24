@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var model = require('../model/public');
 
-/* GET api calls. */
+
 router.get('/', function (req, res, next) {
   res.redirect('../api_docs.html');
 });
@@ -41,10 +41,82 @@ router.post('/createLocation', function (req, res, next) {
 
 router.put('/updateLocation', function(req, res, next){
   var id = req.body.id;
-  var name = req.body.name;
+  var title = req.body.title;
   var description = req.body.description;
   var isPublic = req.body.isPublic;
-  model.updateLocation(id, name, description, isPublic, function(err, data){
+  model.updateLocation(id, title, description, isPublic, function(err, data){
+    res.json(data);
+  })
+})
+
+router.delete('/deleteLocation/:id', function(req, res, next){
+  var id = req.params.id;
+  model.deleteLocation(id, function(err, data){
+    res.json(data);
+  })
+})
+
+router.delete('/deleteLocation/:id', function(req, res, next){
+  var id = req.params.id;
+  model.deleteLocation(id, function(err, data){
+    res.json(data);
+  })
+})
+
+router.get('/getCategories', function (req, res, next) {
+  model.getCategories(function (err, data) {
+    res.json(data);
+  })
+})
+
+router.post('/createCategory', function (req, res, next) {
+  var title = req.body.title
+  model.createCategory(title, function (err, data) {
+    res.json(data);
+  })
+})
+
+router.delete('/deleteCategory/:id', function(req, res, next){
+  var id = req.params.id;
+  model.deleteCategory(id, function(err, data){
+    res.json(data);
+  })
+})
+
+router.get('/getFavoritesForUser/:id', function (req, res, next) {
+  var id = req.params.id;
+  model.getFavoritesForUser(id, function (err, data) {
+    res.json(data);
+  })
+})
+
+router.post('/addFavorite', function (req, res, next) {
+  var userId = req.body.userId
+  var locationId = req.body.locationId
+  model.addFavorite(userId, locationId, function (err, data) {
+    res.json(data);
+  })
+})
+
+router.delete('/deleteFavorite/:id', function(req, res, next){
+  var id = req.params.id;
+  model.deleteFavorite(id, function(err, data){
+    res.json(data);
+  })
+})
+
+router.post('/addLocationCategory', function (req, res, next) {
+  var categoryId = req.body.categoryId
+  var locationId = req.body.locationId
+  model.addLocationCategory(locationId, categoryId, function (err, data) {
+    res.json(data);
+  })
+})
+
+router.delete('/deleteLocationCategory/:id', function (req, res, next) {
+  var id = req.params.id;
+  console.log(id)
+  model.deleteLocationCategory(id, function (err, data) {
     res.json(data);
   })
 })

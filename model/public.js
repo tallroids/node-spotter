@@ -63,7 +63,7 @@ function createLocation(title, description, lat, lon, isPublic, authorId, callba
 
 function updateLocation(id, title, description, isPublic, callback) {
   pool.connect(function () {
-    var query = "UPDATE locations SET (title, description, isPublic) values ('" + title + "', '" + description + "', " + isPublic + ") WHERE id = " + id + "RETURNING id;"
+    var query = "UPDATE locations SET (title, description, isPublic) = ('" + title + "', '" + description + "', " + isPublic + ") WHERE id = " + id + ";"
     pool.query(query, function (err, data) {
       if (err) {
         throw err;
@@ -102,7 +102,7 @@ function getCategories(callback) {
 
 function createCategory(title, callback) {
   pool.connect(function () {
-    var query = "INSERT INTO categories(title) values (" + title + ") RETURNING id;"
+    var query = "INSERT INTO categories(title) values ('" + title + "') RETURNING id;"
     pool.query(query, function (err, data) {
       if (err) {
         throw err
@@ -113,9 +113,9 @@ function createCategory(title, callback) {
   })
 }
 
-function removeCategory(id, callback) {
+function deleteCategory(id, callback) {
   pool.connect(function () {
-    var query = "DELETE FROM categories WHERE id = " + id + ");"
+    var query = "DELETE FROM categories WHERE id = " + id + ";"
     pool.query(query, function (err, data) {
       if (err) {
         throw err
@@ -128,7 +128,7 @@ function removeCategory(id, callback) {
 
 function getFavoritesForUser(id, callback) {
   pool.connect(function () {
-    var query = "SELECT l.* FROM favorites f JOIN locations l ON f.locationId = l.id WHERE f.userId = " + id + ");"
+    var query = "SELECT l.* FROM favorites f JOIN locations l ON f.locationId = l.id WHERE f.userId = " + id + ";"
     pool.query(query, function (err, data) {
       if (err) {
         throw err
@@ -139,9 +139,9 @@ function getFavoritesForUser(id, callback) {
   })
 }
 
-function removeFavorite(id, callback) {
+function deleteFavorite(id, callback) {
   pool.connect(function () {
-    var query = "DELETE FROM favorites WHERE id = " + id + ");"
+    var query = "DELETE FROM favorites WHERE id = " + id + ";"
     pool.query(query, function (err, data) {
       if (err) {
         throw err
@@ -178,6 +178,19 @@ function addLocationCategory(locationId, categoryId, callback) {
   })
 }
 
+function deleteLocationCategory(id, callback) {
+  pool.connect(function () {
+    var query = "DELETE FROM locations_categories WHERE id = " + id + ";"
+    pool.query(query, function (err, data) {
+      if (err) {
+        throw err
+      }
+      var result = data.rows[0]
+      callback(null, result)
+    })
+  })
+}
+
 module.exports = {
   getLocations: getLocations,
   getLocationById: getLocationById,
@@ -186,9 +199,11 @@ module.exports = {
   updateLocation: updateLocation,
   deleteLocation: deleteLocation,
   getCategories: getCategories,
-  removeCategory: removeCategory,
+  createCategory: createCategory,
+  deleteCategory: deleteCategory,
   getFavoritesForUser: getFavoritesForUser,
-  removeFavorite: removeFavorite,
+  deleteFavorite: deleteFavorite,
   addFavorite: addFavorite,
-  addLocationCategory: addLocationCategory
+  addLocationCategory: addLocationCategory,
+  deleteLocationCategory: deleteLocationCategory
 }
