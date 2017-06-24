@@ -10,7 +10,7 @@ const config = {
   database: params.pathname.split('/')[1],
   ssl: true
 }
-if(params.hostname == 'localhost'){
+if(params.pathname.split('/')[1] == 'spotter'){
   config.ssl = false;
 }
 const pool = new Pool(config);
