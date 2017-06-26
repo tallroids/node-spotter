@@ -1,51 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>
-    <%= title %>
-  </title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Compiled and minified CSS -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-  <nav class="blue darken-4">
-    <div class="nav-wrapper container">
-      <a href="#!" class="brand-logo">Spotter</a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a onclick="showPage(Home);">Home</a></li>
-        <li><a onclick="showPage(Favorites);">Favorites</a></li>
-        <li><a onclick="showPage(Browse);">Browse</a></li>
-        <li><a onclick="showPage(Share);">Share</a></li>
-      </ul>
-      <form>
-        <div class="input-field right hide-on-small-and-down">
-          <input id="search" type="search" required>
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </form>
-      <ul class="side-nav" id="mobile-demo">
-        <li><a onclick="showPage(Home);">Home</a></li>
-        <li><a onclick="showPage(Favorites);">Favorites</a></li>
-        <li><a onclick="showPage(Browse);">Browse</a></li>
-        <li><a onclick="showPage(Share);">Share</a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="parallax-container">
+<%- include modules/header.ejs %>
+  <div class="parallax-container panel">
     <div class="parallax"><img src="images/homeBackground1.jpg"></div>
   </div>
-  <div class="section">
+  <div class="section panel">
     <div class=" row container">
       <h1 class="header center">
         Spotter
@@ -54,14 +11,15 @@
         <h5 class="header light">Where the world meets to find and share the most spectacular shots</h5>
       </div>
       <div class="row center">
-        <a href="#" onclick="showRegister()" class="btn-large waves-effect blue darken-4">Get Started!</a>
+        <a onclick="$('html, body').animate({scrollTop:1200},'50');" class="btn-large waves-effect blue darken-4">Learn More</a>
+        <a href="register" class="btn-large waves-effect blue darken-4">Get Started!</a>
       </div>
     </div>
   </div>
-  <div class="parallax-container">
-    <div class="parallax"><img src="images/homeBackground1.jpg"></div>
+  <div class="parallax-container panel">
+    <div class="parallax"><img src="images/homeBackground2.jpg"></div>
   </div>
-  <div class="section">
+  <div class="section panel" id="find">
     <div class="row container">
       <h1 class="header center">
         Find
@@ -71,10 +29,10 @@
       </div>
     </div>
   </div>
-  <div class="parallax-container">
-    <div class="parallax"><img src="images/homeBackground1.jpg"></div>
+  <div class="parallax-container panel">
+    <div class="parallax"><img src="images/homeBackground3.jpg"></div>
   </div>
-  <div class="section">
+  <div class="section panel">
     <div class="row container">
       <h1 class="header center">
         Share
@@ -83,20 +41,13 @@
         <h5 class="header light">Share the spots that you have come to love with the community, or save them privately and build your own collection</h5>
       </div>
       <div class="row center">
-        <a href="#" onclick="showRegister()" class="btn-large waves-effect blue darken-4">Get Started!</a>
+        <a href="register" class="btn-large waves-effect blue darken-4">Get Started!</a>
       </div>
     </div>
   </div>
-  <footer class="page-footer blue darken-4">
-    <div class="footer-copyright">
-      <div class="container">&copy; Harker Media 2017 | All rights reserved</div>
-    </div>
-  </footer>
-</body>
-<script src="/js/scripts.js"></script>
+  <%- include modules/footer.ejs %>
 
-</html>
 
-<!--<a class="btn-floating btn-large waves-effect waves-light teal">
+    <!--<a class="btn-floating btn-large waves-effect waves-light teal">
         <i class="material-icons">add</i>
       </a>-->

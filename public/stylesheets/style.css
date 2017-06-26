@@ -79,8 +79,24 @@ h3.delete:before {
   height: 300px;
 }
 
-.parallax-container {
-  height: "your height here";
+#pageContent .panel {
+  height: 50vh;
+}
+
+#pageContent {
+  min-height: calc(100vh - 139px);
+}
+
+button {
+  margin: 10px 0;
+}
+
+.page-footer {
+  padding-top: 0;
+}
+
+.panel .row {
+  transform: translate(0, 20%)
 }
 
 #docs h1 {

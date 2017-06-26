@@ -11,9 +11,9 @@ var config = {
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 }
 
-function getUserById(id, callback){
-var pool = new Pool(config);
-pool.connect(function (e) {
+function getUserById(id, callback) {
+  var pool = new Pool(config);
+  pool.connect(function (e) {
     pool.query('SELECT * FROM person WHERE id=' + id, function (err, data) {
       if (err) {
         throw err;
@@ -24,9 +24,9 @@ pool.connect(function (e) {
   })
 }
 
-function login(username, password, callback){
-var pool = new Pool(config);
-pool.connect(function (e) {
+function login(username, password, callback) {
+  var pool = new Pool(config);
+  pool.connect(function (e) {
     pool.query('SELECT * FROM person WHERE id=' + id, function (err, data) {
       if (err) {
         throw err;
@@ -37,8 +37,21 @@ pool.connect(function (e) {
   })
 }
 
+function registerUser(fname, lname, email, pass, callback) {
+  var pool = new Pool(config);
+  pool.connect(function (e) {
+    pool.query("INSERT INTO users (fname, lname, email, pass) VALUES ('" + fname + "' ,'" + lname + "' ,'" + email + "' ," + pass + " RETURNING id, fname;", function (err, data) {
+      if (err) {
+        throw err;
+      }
+      person = data.rows[0];
+      callback(null, person);
+    })
+  })
+}
 
 module.exports = {
   getUserById: getUserById,
-  login: login
+  login: login,
+  registerUser: registerUser
 }
