@@ -25,6 +25,16 @@ header h1 {
   margin: auto;
 }
 
+nav i {
+  color: #fff;
+}
+
+.input-field input[type=search] {
+  border: none;
+  margin-bottom: 5px;
+  height: calc(100% - 2px);
+}
+
 main {
   padding: 20px 50px;
   max-width: 800px;
@@ -63,6 +73,14 @@ h3.put:before {
 
 h3.delete:before {
   content: "DELETE : ";
+}
+
+.parallax-container {
+  height: 300px;
+}
+
+.parallax-container {
+  height: "your height here";
 }
 
 #docs h1 {
