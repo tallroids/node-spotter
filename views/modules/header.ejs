@@ -21,15 +21,12 @@
         <a href="/" class="brand-logo">Spotter</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <% if(user) { %>
-            <h2>
-              <%= user.name %>
+          <% if(loggedIn) { %>
                 <li><a onclick="showPage(home);">Home</a></li>
                 <li><a onclick="showPage(favorites);">Favorites</a></li>
                 <li><a onclick="showPage(browse);">Browse</a></li>
                 <li><a onclick="showPage(share);">Share</a></li>
                 <li><a href="logout">Logout</a></li>
-            </h2>
             <% } else { %>
               <li><a href="login">Login</a></li>
               <li><a href="register">Register</a></li>
@@ -43,10 +40,16 @@
           </div>
         </form>
         <ul class="side-nav" id="mobile-demo">
-          <li><a onclick="showPage(Home);">Home</a></li>
-          <li><a onclick="showPage(Favorites);">Favorites</a></li>
-          <li><a onclick="showPage(Browse);">Browse</a></li>
-          <li><a onclick="showPage(Share);">Share</a></li>
+          <% if(loggedIn) { %>
+                <li><a onclick="showPage(home);">Home</a></li>
+                <li><a onclick="showPage(favorites);">Favorites</a></li>
+                <li><a onclick="showPage(browse);">Browse</a></li>
+                <li><a onclick="showPage(share);">Share</a></li>
+                <li><a href="logout">Logout</a></li>
+            <% } else { %>
+              <li><a href="login">Login</a></li>
+              <li><a href="register">Register</a></li>
+              <% } %>
         </ul>
       </div>
     </nav>
