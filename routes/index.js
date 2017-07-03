@@ -24,7 +24,7 @@ router.post('/login', function(req, res, next){
   var password = req.body.password
   var user = ums.login(username, password, function(err, user){
     console.log("err: ", err, "User: ", user)
-    res.render('index', {
+    res.status(200).render('index', {
       loggedIn: true,
       user: user
     });
