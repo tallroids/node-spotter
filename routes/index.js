@@ -27,7 +27,6 @@ router.post('/login', function(req, res, next){
   var username = req.body.username
   var password = req.body.password  
   var user = ums.login(username, password, function(err, user){
-    console.log(user.success)
     if(user.success === true){
       req.session.userId = user.id
       req.session.fname = user.fname
@@ -66,7 +65,6 @@ router.get('/getUserById/:id', function (req, res, next) {
 });
 
 router.get('/home', function(req, res, next){
-  console.log(req.session.userId)
   if(typeof(req.session.userId) != 'undefined'){
     res.render('home', {
       loggedIn: true
