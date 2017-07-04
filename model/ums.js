@@ -30,20 +30,23 @@ function getUserById(id, callback) {
 
 function login(username, password, callback) {
   var pool = new Pool(config);
-  console.log(pool)
   var user = {};
   pool.connect(function (e) {
     pool.query("SELECT * FROM users WHERE username = '" + username + "';", function (err, data) {
-      console.log(data)
       if (err) {
         throw err;
       }
       user = data.rows[0];
-      console.log("user", data)
       if(user.password == password){
-        callback(null, data)
+        var result = {
+          id: user.id,
+          fname: user.fname,
+          lname: user.lname,
+          success: true
+        }
+        callback(null, result)
       } else {
-      callback("Invalid Login", null);
+      callback(null, {success: false});
       }
     })
   })

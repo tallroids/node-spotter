@@ -4,7 +4,11 @@ var ums = require('../model/ums');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+  if(typeof(req.session.userId) != 'undefined'){
+    res.redirect('/home')
+  } else {
   res.render('index', {user: "Test", loggedIn: false});
+  }
 });
 
 router.get('/register', function (req, res, next) {
@@ -21,19 +25,18 @@ router.get('/login', function (req, res, next) {
 
 router.post('/login', function(req, res, next){
   var username = req.body.username
-  var password = req.body.password
+  var password = req.body.password  
   var user = ums.login(username, password, function(err, user){
-    console.log("err: ", err, "User: ", user)
-    res.status(200).render('index', {
-      loggedIn: true,
-      user: user
-    });
+    console.log(user.success)
+    if(user.success === true){
+      req.session.userId = user.id
+      req.session.fname = user.fname
+      res.json(user)
+    } else {
+      res.json(user)
+    }
   });
 });
-
-/* else {
-      res.render('register', {message: "Invalid login, please try again."})
-    }*/
 
 router.post('/registerUser', function (req, res, next) {
   var fname = req.body.fname
@@ -62,5 +65,21 @@ router.get('/getUserById/:id', function (req, res, next) {
   }
 });
 
+router.get('/home', function(req, res, next){
+  console.log(req.session.userId)
+  if(typeof(req.session.userId) != 'undefined'){
+    res.render('home', {
+      loggedIn: true
+    })
+  } else {
+    res.redirect('/')
+  }
+})
+
+router.get('/logout', function(req, res, next){
+  req.session.destroy(function(err){
+    res.redirect('/')
+  })
+})
 
 module.exports = router;

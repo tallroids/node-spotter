@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/getLocations', function (req, res, next) {
   model.getLocations(function (err, data) {
+    data['success'] = true;
     res.json(data);
   })
 })
