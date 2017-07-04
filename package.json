@@ -18,5 +18,9 @@
     "express-session": "^1.15.3",
     "node-bcrypt": "0.0.1",
     "url": "^0.11.0"
+  },
+  "engines": {
+    "node": "6.9.4",
+    "npm": "3.10.10"
   }
 }
