@@ -1,6 +1,6 @@
 const Pool = require('pg-pool');
 const url = require('url');
-const params = url.parse(process.env.DATABASE_URL || 'postgres://spotter_client:spotter_client@localhost:5432/spotter');
+const params = url.parse(process.env.DATABASE_URL || 'postgres://spotter_client:spotter_client@127.0.0.1:5432/spotter');
 const auth = params.auth.split(':');
 const config = {
   user: auth[0],
@@ -10,6 +10,9 @@ const config = {
   database: params.pathname.split('/')[1],
   ssl: true
 }
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 if(params.pathname.split('/')[1] == 'spotter'){
   config.ssl = false;
 }
@@ -37,17 +40,19 @@ function login(username, password, callback) {
         throw err;
       }
       user = data.rows[0];
-      if(user.password == password){
-        var result = {
+      bcrypt.compare(password, user.password, function(err, res){
+        if(res == true){
+          var result = {
           id: user.id,
           fname: user.fname,
           lname: user.lname,
           success: true
         }
-        callback(null, result)
-      } else {
-      callback(null, {success: false});
-      }
+          callback(null, result)
+        } else {
+          callback(null, {success: false});
+        }
+      })
     })
   })
 }

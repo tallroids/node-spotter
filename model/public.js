@@ -1,6 +1,6 @@
 const Pool = require('pg-pool');
 const url = require('url');
-const params = url.parse(process.env.DATABASE_URL || 'postgres://spotter_client:spotter_client@localhost:5432/spotter');
+const params = url.parse(process.env.DATABASE_URL || 'postgres://spotter_client:spotter_client@127.0.0.1:5432/spotter');
 const auth = params.auth.split(':');
 const config = {
   user: auth[0],
@@ -129,9 +129,10 @@ function deleteCategory(id, callback) {
   })
 }
 
-function getFavoritesForUser(id, callback) {
+function getFavorites(req, callback) {
+  console.log(req.session.userId)
   pool.connect(function () {
-    var query = "SELECT l.* FROM favorites f JOIN locations l ON f.locationId = l.id WHERE f.userId = " + id + ";"
+    var query = "SELECT l.* FROM favorites f JOIN locations l ON f.locationId = l.id WHERE f.userId = " + req.session.userId + ";"
     pool.query(query, function (err, data) {
       if (err) {
         throw err
@@ -204,7 +205,7 @@ module.exports = {
   getCategories: getCategories,
   createCategory: createCategory,
   deleteCategory: deleteCategory,
-  getFavoritesForUser: getFavoritesForUser,
+  getFavorites: getFavorites,
   deleteFavorite: deleteFavorite,
   addFavorite: addFavorite,
   addLocationCategory: addLocationCategory,

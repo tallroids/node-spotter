@@ -8,8 +8,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/getLocations', function (req, res, next) {
   model.getLocations(function (err, data) {
-    data['success'] = true;
-    res.json(data);
+    res.json({locations: data, success: true});
   })
 })
 
@@ -22,8 +21,9 @@ router.get('/getLocationById/:id', function (req, res, next) {
 
 router.get('/getLocationsByCategoryId/:id', function (req, res, next) {
   var id = req.params.id
-  model.getLocationsByCategoryId(id, function (err, data) {
-    res.json(data);
+  model.getLocationsByCategoryId(id, function (err, data){
+    console.log(data)
+    res.json({locations: data, success:true});
   })
 })
 
@@ -65,7 +65,7 @@ router.delete('/deleteLocation/:id', function(req, res, next){
 
 router.get('/getCategories', function (req, res, next) {
   model.getCategories(function (err, data) {
-    res.json(data);
+    res.json({categories: data, success: true});
   })
 })
 
@@ -83,10 +83,9 @@ router.delete('/deleteCategory/:id', function(req, res, next){
   })
 })
 
-router.get('/getFavoritesForUser/:id', function (req, res, next) {
-  var id = req.params.id;
-  model.getFavoritesForUser(id, function (err, data) {
-    res.json(data);
+router.get('/getFavorites', function (req, res, next) {
+  model.getFavorites(req, function (err, data) {
+    res.json({locations:data, success:true});
   })
 })
 
