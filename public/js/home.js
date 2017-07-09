@@ -8,6 +8,7 @@ function initMap() {
     lat: Number(locations[0].lat),
     lng: Number(locations[0].lng)
   }
+  console.log(center)
   window.map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
     center: center
