@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');
+/*@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');*/
 
 html {
   margin: 0;
   padding: 0;
-  font: 14px "Open Sans", Helvetica, Arial, sans-serif;
+  font: 14px /*"Open Sans", */Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -102,6 +102,11 @@ button {
   transform: translate(0, 20%)
 }
 
+#map{
+  height: 350px;
+  margin-top: 20px;
+}
+
 #docs h1 {
   font-size: 2.3em;
   font-weight: 700;
@@ -124,4 +129,25 @@ footer p {
   color: #fff;
   margin: 0;
   padding: 20px;
+}
+
+button.header{
+  padding: 0;
+  border: none;
+  margin: 0;
+  background: none;
+  color: #00B7FF;
+}
+
+#prompt{
+  display: none;
+  height: 0px;
+  transition: .3s;
+  background: #ddeeff;
+  padding: 20px;
+}
+
+#prompt.visible{
+  display: block;
+  height: auto;
 }

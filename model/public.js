@@ -51,9 +51,9 @@ function getLocationsByCategoryId(id, callback) {
   })
 }
 
-function createLocation(title, description, lat, lon, isPublic, authorId, callback) {
+function createLocation(title, description, lat, lng, isPublic, authorId, callback) {
   pool.connect(function () {
-    var query = "INSERT INTO locations(title, description, lat, lon, isPublic, authorId) values ('" + title + "', '" + description + "', " + lat + ", " + lon + ", " + isPublic + ", " + authorId + ") RETURNING id;"
+    var query = "INSERT INTO locations(title, description, lat, lng, isPublic, authorId) values ('" + title + "', '" + description + "', " + lat + ", " + lng + ", " + isPublic + ", " + authorId + ") RETURNING id;"
     pool.query(query, function (err, data) {
       if (err) {
         throw err;

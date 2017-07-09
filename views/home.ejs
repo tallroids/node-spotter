@@ -1,20 +1,27 @@
 <%- include modules/header.ejs %>
-<div id="pageContent" class="row container">
-  <div class="container col s12 m3 l2">
-  <h3>Categories</h3>
-  <div id="categories"></div>
+  <div id="pageContent" class="row container">
+    <div id="map" class="container row col s12 m12 l4">
+    </div>
+    <div id="prompt">
+      <label for="title">Location Title</label>
+      <input type="text" id="title">
+      <label for="desc">Location Description</label>
+      <input type="text" id="desc">
+      <label for="public">Submit Publicly?</label>
+      <input type="checkbox" id="public" checked="checked">
+    </div>
+    <div class="container col s12 m3 l2">
+      <h3>Categories</h3>
+      <div id="categories"></div>
+    </div>
+    <div class="container col s12 m9 l6">
+      <h3 id="pageName">Locations</h3>
+      <div id="locations"></div>
+    </div>
+    <a class="btn-floating btn-large waves-effect waves-light teal" onclick="addLocation()">
+      <i class="material-icons">add</i>
+    </a>
   </div>
-  <div class="container col s12 m9 l6">
-  <h3 id="pageName">Locations</h3>
-  <div id="locations"></div>
-  </div>
-  <div id="map" class="container col s12 m12 l4">
-  </div>
-  <a class="btn-floating btn-large waves-effect waves-light teal">
-    <i class="material-icons">add</i>
-  </a>
-</div>
-<script src="js/home.js"></script>
-<%- include modules/footer.ejs %>
-
-
+  <script src="js/home.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5vzxhhGrSlKwQHbetNCtBuGeM2L5dloE&callback=initMap"></script>
+  <%- include modules/footer.ejs %>
