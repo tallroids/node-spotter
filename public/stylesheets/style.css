@@ -145,6 +145,7 @@ button.header{
   transition: .3s;
   background: #ddeeff;
   padding: 20px;
+  margin-top: 20px;
 }
 
 #prompt.visible{
