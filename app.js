@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var index = require('./routes/index');
 var api = require('./routes/api');
-var bcrypt = require('node-bcrypt');
 
 var app = express();
 
