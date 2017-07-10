@@ -28,13 +28,15 @@ router.get('/getLocationsByCategoryId/:id', function (req, res, next) {
 })
 
 router.post('/createLocation', function (req, res, next) {
+  console.log(req.body)
   var title = req.body.title;
   var description = req.body.description;
   var lat = req.body.lat;
-  var lon = req.body.lon;
+  var lng = req.body.lng;
   var isPublic = req.body.isPublic;
-  var authorId = req.body.authorId;
-  model.createLocation(title, description, lat, lon, isPublic, authorId, function (err, data) {
+  var authorId = req.session.userId;
+  console.log(title, description, lat, lng, isPublic, authorId)
+  model.createLocation(title, description, lat, lng, isPublic, authorId, function (err, data) {
     res.json(data);
   })
 })

@@ -25,7 +25,7 @@ function initMap() {
   })
 }
 
-function addLocation(){
+function showAddLocation(){
   google.maps.event.addListener(map, 'click', function(event) {
     marker = new google.maps.Marker({
       position: event.latLng,
@@ -35,11 +35,30 @@ function addLocation(){
   })
 }
 
+function addLocation(){
+  var latlng = JSON.parse($('#latlng').val())
+  var title = $('#title').val()
+  var desc = $('#desc').val()
+  var isPublic = $('#isPublic').val()
+  var data = {
+    title:title,
+    description:desc,
+    lat:latlng.lat,
+    lng:latlng.lng,
+    isPublic:isPublic
+  }
+  $.post('api/createLocation', data, function(result){
+    console.log(result)
+  })
+}
+
 function openPrompt(latlng){
   $('#prompt').addClass('visible')
+  $('#latlng').val(JSON.stringify(latlng))
 }
 
 function displayLocations(locations) {
+  console.log(locations)
   localStorage.setItem('locations', JSON.stringify(locations))
   $('#locations').text('');
   locations.forEach(function (location) {
