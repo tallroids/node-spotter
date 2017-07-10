@@ -107,9 +107,10 @@ $.get("/api/getCategories", function (result) {
 function getLocations() {
   $('#locations').text('')
   $.get("/api/getLocations", function (result) {
-    if (typeof (result) == 'object' && result.success) {
+    if (result.success) {
       displayLocations(result.locations);
     } else {
+      displayLocations(JSON.parse(localStorage.getItem('locations')))
       $("#locations").text("Could not retrieve locations.");
     }
   });
