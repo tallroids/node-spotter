@@ -10,7 +10,7 @@ function initMap() {
   }
   console.log(center)
   window.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 8,
     center: center
   });
   locations.forEach(function (each) {
@@ -62,7 +62,7 @@ function displayLocations(locations) {
   localStorage.setItem('locations', JSON.stringify(locations))
   $('#locations').text('');
   locations.forEach(function (location) {
-    $('#locations').append("<h3><button class='header' onclick='highlight({lat:" + location.lat + ", lng:" + location.lng + "})'>" + location.title + "</button></h3>")
+    $('#locations').append("<h3 id=" + location.id + "><button class='header' onclick='highlight({lat:" + location.lat + ", lng:" + location.lng + "})'>" + location.title + "</button><button class='header edit' onclick='editLocation(" + location.id + ")'></button></h3>")
     $('#locations').append("<p>" + location.description + "</p>")
   })
 }
@@ -117,3 +117,8 @@ function getLocations() {
 }
 
 getLocations();
+
+function editLocation(locationId){
+  $('#'+locationId+'+p').append($('#editForm'))
+//  $('#')
+}

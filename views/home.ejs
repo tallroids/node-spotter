@@ -34,6 +34,26 @@
       <i class="material-icons">add</i>
     </a>
   </div>
+<div class="hidden">
+  <div id="editForm">
+    <p>
+      <input type="text" id="editTitle">
+      <label for="editTitle">Location Title</label>
+    </p>
+    <p>
+      <input type="text" id="editDesc">
+      <label for="editDesc">Location Description</label>
+    </p>
+    <p>
+      <input type="checkbox" id="editIsPublic" value="true"  checked="checked">
+      <label for="editIsPublic">Submit Publicly?</label>
+    </p>
+    <input type="hidden" id="editLatlng">
+    <p>
+      <button onclick="editLocation()" class="btn waves-effect waves-light blue">Publish</button>
+    </p>
+  </div>
+</div>
   <script src="js/home.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5vzxhhGrSlKwQHbetNCtBuGeM2L5dloE&callback=initMap"></script>
   <%- include modules/footer.ejs %>
