@@ -1,40 +1,39 @@
 <%- include modules/header.ejs %>
-  <div id="pageContent" class="row container">
-    <div id="mapCont" class="col s12 m12 l4">
-      <div id="map">
-      </div>
-      <div id="prompt">
-        <p>
-          <input type="text" id="title">
-          <label for="title">Location Title</label>
-        </p>
-        <p>
-          <input type="text" id="desc">
-          <label for="desc">Location Description</label>
-        </p>
-        <p>
-          <input type="checkbox" id="isPublic" value="true"  checked="checked">
-          <label for="isPublic">Submit Publicly?</label>
-        </p>
-        <input type="hidden" id="latlng">
-        <p>
-          <button onclick="addLocation()" class="btn-large waves-effect waves-light blue">Publish</button>
-        </p>
-      </div>
-    </div>
-    <div class="container col s12 m3 l2">
-      <h3>Categories</h3>
-      <div id="categories"></div>
-    </div>
-    <div class="container col s12 m9 l6">
-      <h3 id="pageName">Locations</h3>
-      <div id="locations"></div>
-    </div>
-    <a class="btn-floating btn-large waves-effect waves-light blue" onclick="showAddLocation()">
-      <i class="material-icons">add</i>
-    </a>
+<div id="mapCont" class="col s12 m12 l4">
+  <div id="map">
   </div>
-<div class="hidden">
+  <div id="prompt" class="blue header white-text"></div>
+  <div id="newLocation">
+    <p>
+      <input type="text" id="title">
+      <label for="title">Location Title</label>
+    </p>
+    <p>
+      <input type="text" id="desc">
+      <label for="desc">Location Description</label>
+    </p>
+    <p>
+      <input type="checkbox" id="isPublic" value="true"  checked="checked">
+      <label for="isPublic">Submit Publicly?</label>
+    </p>
+    <input type="hidden" id="latlng">
+    <p>
+      <button onclick="addLocation()" class="btn-large waves-effect waves-light blue">Publish</button>
+    </p>
+  </div>
+</div>
+<div class="container col s12 m3 l2">
+  <h3>Categories</h3>
+  <div id="categories"></div>
+</div>
+<div class="container col s12 m9 l6">
+  <h3 id="pageName">Locations</h3>
+  <div id="locations"></div>
+</div>
+<a class="btn-floating btn-large waves-effect waves-light blue" onclick="showAddLocation()">
+  <i class="material-icons">add</i>
+</a>
+<div id="hidden" class="hidden">
   <div id="editForm">
     <p>
       <input type="text" id="editTitle">
@@ -48,9 +47,10 @@
       <input type="checkbox" id="editIsPublic" value="true"  checked="checked">
       <label for="editIsPublic">Submit Publicly?</label>
     </p>
-    <input type="hidden" id="editLatlng">
+    <input type="hidden" id="locationId">
     <p>
       <button onclick="editLocation()" class="btn waves-effect waves-light blue">Publish</button>
+      <button onclick="deleteLocation()" class="btn waves-effect waves-light red">Delete</button>
     </p>
   </div>
 </div>

@@ -15,7 +15,7 @@ router.get('/getLocations', function (req, res, next) {
 router.get('/getLocationById/:id', function (req, res, next) {
   var id = req.params.id
   model.getLocationById(id, function (err, data) {
-    res.json(data);
+    res.json({location: data, success: true});
   })
 })
 
@@ -37,7 +37,7 @@ router.post('/createLocation', function (req, res, next) {
   var authorId = req.session.userId;
   console.log(title, description, lat, lng, isPublic, authorId)
   model.createLocation(title, description, lat, lng, isPublic, authorId, function (err, data) {
-    res.json(data);
+    res.json({success: true});
   })
 })
 
@@ -47,21 +47,21 @@ router.put('/updateLocation', function(req, res, next){
   var description = req.body.description;
   var isPublic = req.body.isPublic;
   model.updateLocation(id, title, description, isPublic, function(err, data){
-    res.json(data);
+    res.json({success: true, data:id});
   })
 })
 
 router.delete('/deleteLocation/:id', function(req, res, next){
   var id = req.params.id;
   model.deleteLocation(id, function(err, data){
-    res.json(data);
+    res.json({success: true});
   })
 })
 
 router.delete('/deleteLocation/:id', function(req, res, next){
   var id = req.params.id;
   model.deleteLocation(id, function(err, data){
-    res.json(data);
+    res.end({success: true});
   })
 })
 
@@ -116,7 +116,6 @@ router.post('/addLocationCategory', function (req, res, next) {
 
 router.delete('/deleteLocationCategory/:id', function (req, res, next) {
   var id = req.params.id;
-  console.log(id)
   model.deleteLocationCategory(id, function (err, data) {
     res.json(data);
   })

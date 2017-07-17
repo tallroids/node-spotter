@@ -139,18 +139,21 @@ button.header{
   color: #00B7FF;
 }
 
-#prompt{
+#newLocation{
   display: none;
-  height: 0px;
   transition: .3s;
   background: #ddeeff;
   padding: 20px;
   margin-top: 20px;
 }
 
-#prompt.visible{
+#prompt{
+  display: none;
+}
+
+#newLocation.visible, #prompt.visible{
   display: block;
-  height: auto;
+  padding: 15px;
 }
 
 .hidden{

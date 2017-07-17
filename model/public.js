@@ -66,7 +66,7 @@ function createLocation(title, description, lat, lng, isPublic, authorId, callba
 
 function updateLocation(id, title, description, isPublic, callback) {
   pool.connect(function () {
-    var query = "UPDATE locations SET (title, description, isPublic) = ('" + title + "', '" + description + "', " + isPublic + ") WHERE id = " + id + ";"
+    var query = "UPDATE locations SET (title, description, isPublic) = ('" + title + "', '" + description + "', " + isPublic + ") WHERE id = " + id + " RETURNING id;"
     pool.query(query, function (err, data) {
       if (err) {
         throw err;
