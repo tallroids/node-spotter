@@ -16,6 +16,7 @@ function login() {
 
 	$.post("/login", params, function(result) {
 		if (result.success) {
+          localStorage.setItem('userId', result.id)
           window.location = '/home'
         } else {
           $("#message").text("Error logging in.");

@@ -70,11 +70,7 @@ function displayLocations(locations) {
   localStorage.setItem('locations', JSON.stringify(locations))
   $('#locations').text('');
   locations.forEach(function (location) {
-    if (location.authorid == Number(localStorage.getItem('userId'))) {
-      $('#locations').append("<h3 id=" + location.id + "><button class='header' onclick='highlight({lat:" + location.lat + ", lng:" + location.lng + "})'>" + location.title + "</button><button title = 'Edit location' class='header edit' onclick='showEditLocation(" + location.id + ")'></button><button title='Add to favorites' class='header edit favorite' onclick='addFavorite(" + location.id + ")'></button></h3>")
-    } else {
-      $('#locations').append("<h3 id=" + location.id + "><button class='header' onclick='highlight({lat:" + location.lat + ", lng:" + location.lng + "})'>" + location.title + "</button><button title='Add to favorites' class='header edit favorite' onclick='addFavorite(" + location.id + ")'></button></h3>")
-    }
+    $('#locations').append("<h3 id=" + location.id + "><button class='header' onclick='highlight({lat:" + location.lat + ", lng:" + location.lng + "})'>" + location.title + "</button></h3>")
     $('#locations').append("<p>" + location.description + "</p>")
   })
   initMap();
@@ -119,7 +115,7 @@ $.get("/api/getCategories", function (result) {
 
 function getLocations() {
   $('#locations').text('')
-  $.get("/api/getLocations", function (result) {
+  $.get("/api/getFavorites", function (result) {
     if (result.success) {
       displayLocations(result.locations);
     } else {
@@ -188,15 +184,4 @@ function refreshLocations(message) {
     $('#prompt').removeClass('visible')
   }, 3000)
   getLocations();
-}
-
-function addFavorite(locationId) {
-  var data = {
-    locationId: locationId
-  }
-  $.post('api/addFavorite', data, function (result) {
-    if (result.success) {
-      refreshLocations("favorited location")
-    }
-  })
 }
