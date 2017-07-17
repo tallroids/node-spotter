@@ -86,6 +86,16 @@ router.get('/home', function (req, res, next) {
   }
 })
 
+router.get('/favorites', function (req, res, next) {
+  if (typeof (req.session.userId) != 'undefined') {
+    res.render('favorites', {
+      loggedIn: true
+    })
+  } else {
+    res.redirect('/')
+  }
+})
+
 router.get('/logout', function (req, res, next) {
   req.session.destroy(function (err) {
     res.redirect('/')

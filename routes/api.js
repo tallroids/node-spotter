@@ -92,10 +92,10 @@ router.get('/getFavorites', function (req, res, next) {
 })
 
 router.post('/addFavorite', function (req, res, next) {
-  var userId = req.body.userId
+  var userId = req.session.userId
   var locationId = req.body.locationId
   model.addFavorite(userId, locationId, function (err, data) {
-    res.json(data);
+    res.json({success: true});
   })
 })
 

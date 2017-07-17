@@ -7,6 +7,7 @@ const config = {
   password: auth[1],
   host: params.hostname,
   port: params.port,
+  idleTimeoutMillis: 120000,
   database: params.pathname.split('/')[1],
   ssl: true
 }

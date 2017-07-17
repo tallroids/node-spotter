@@ -170,3 +170,7 @@ button.edit:before{
   width: 1em;
   margin-left: 5px;
 }
+
+button.edit.favorite:before{
+  content: ' ❤'
+}

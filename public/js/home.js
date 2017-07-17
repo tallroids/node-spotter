@@ -70,7 +70,7 @@ function displayLocations(locations) {
   localStorage.setItem('locations', JSON.stringify(locations))
   $('#locations').text('');
   locations.forEach(function (location) {
-    $('#locations').append("<h3 id=" + location.id + "><button class='header' onclick='highlight({lat:" + location.lat + ", lng:" + location.lng + "})'>" + location.title + "</button><button class='header edit' onclick='showEditLocation(" + location.id + ")'></button></h3>")
+    $('#locations').append("<h3 id=" + location.id + "><button class='header' onclick='highlight({lat:" + location.lat + ", lng:" + location.lng + "})'>" + location.title + "</button><button title = 'Edit location' class='header edit' onclick='showEditLocation(" + location.id + ")'></button><button title='Add to favorites' class='header edit favorite' onclick='addFavorite(" + location.id + ")'></button></h3>")
     $('#locations').append("<p>" + location.description + "</p>")
   })
   initMap();
@@ -180,5 +180,17 @@ function refreshLocations(message) {
   $('#hidden').append($('#editForm'))
   $('#prompt').addClass('visible')
   $('#prompt').text("Successfully " + message)
+  setTimeout(function () {
+    $('#prompt').removeClass('visible')
+  }, 3000)
   getLocations();
+}
+
+function addFavorite(locationId){
+  var data = {locationId: locationId}
+  $.post('api/addFavorite', data, function(result){
+    if(result.success){
+      refreshLocations("favorited location")
+    }
+  })
 }

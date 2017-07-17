@@ -22,8 +22,8 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <% if(loggedIn) { %>
-                <li><a onclick="showPage('home');">Home</a></li>
-                <li><a onclick="showPage('Favorites');">Favorites</a></li>
+                <li><a href="home">Home</a></li>
+                <li><a href="favorites">Favorites</a></li>
                 <li><a href="logout">Logout</a></li>
             <% } else { %>
               <li><a href="login">Login</a></li>
@@ -32,8 +32,8 @@
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <% if(loggedIn) { %>
-                <li><a onclick="showPage('home');">Home</a></li>
-                <li><a onclick="showPage('Favorites');">Favorites</a></li>
+                <li><a href="home">Home</a></li>
+                <li><a href="favorites">Favorites</a></li>
                 <li><a href="logout">Logout</a></li>
             <% } else { %>
               <li><a href="login">Login</a></li>
