@@ -2,20 +2,22 @@
   <div class="container">
     <h2 class="header">Sign up for your free account!</h2>
     <% if(typeof(message) != "undefined") { %>
-    <h5><%= message %></h5>
-    <% } %>
-    <form action="registerUser" method="post" class="col s12 m8 l2">
-      <h5>First Name</h5>
-      <input type="text" id="" name="fname">
-      <h5>Last Name</h5>
-      <input type="text" id="" name="lname">
-      <h5>Email Address (Your username)</h5>
-      <input type="email" id="" name="email">
-      <h5>Password</h5>
-      <input type="password" id="" name="pass">
-      <h5>Confirm Password</h5>
-      <input type="password" id="" name="confPass">
-      <button type="submit" class="btn waves-effect waves-light blue darken-4">Submit</button>
-    </form>
+      <h5>
+        <%= message %>
+      </h5>
+      <% } %>
+        <form action="registerUser" method="post" class="col s12 m8">
+          <h5>First Name</h5>
+          <input type="text" name="fname">
+          <h5>Last Name</h5>
+          <input type="text" name="lname">
+          <h5>Email Address (Your username)</h5>
+          <input type="email" name="email">
+          <h5>Password</h5>
+          <input type="password" name="pass">
+          <h5>Confirm Password</h5>
+          <input type="password" id="" name="confPass">
+          <button type="submit" class="btn waves-effect waves-light blue darken-4">Submit</button>
+        </form>
   </div>
   <%- include modules/footer.ejs %>
